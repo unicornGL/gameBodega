@@ -1,0 +1,164 @@
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+  outline: none;
+  user-select: none;
+  font-family: 'Press Start 2P', cursive;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  padding: 3rem;
+  box-sizing: border-box;
+}
+
+#header {
+  position: relative;
+  background-image: linear-gradient(to right bottom, rgba(201, 214, 223, 0.6), rgba(82, 97, 107, 0.9)), url("https://wallpapercave.com/wp/PYgfKaE.jpg");
+  background-size: cover;
+  background-position: 50% 20%;
+  background-repeat: no-repeat;
+  height: 95vh;
+  clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+}
+
+#header .header__title {
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%);
+  font-size: 8rem;
+  color: #f0f5f9;
+  text-shadow: 0 0 1rem #c9d6df, 0 0 2rem #c9d6df, 0 0 3rem #c9d6df, 0 0 3.5rem #c9d6df;
+}
+
+#header .header__title:hover {
+  animation: Glow .7s ease infinite alternate;
+}
+
+@keyframes Glow {
+  to {
+    text-shadow: 0 0 1rem #c9d6df, 0 0 2rem #c9d6df, 0 0 3rem #c9d6df, 0 0 4rem #c9d6df, 0 0 5rem #c9d6df, 0 0 6rem #c9d6df, 0 0 7rem #c9d6df, 0 0 8rem #c9d6df, 0 0 10rem #c9d6df, 0 0 12rem #c9d6df, 0 0 15rem #c9d6df;
+  }
+}
+
+#games {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  perspective: 150rem;
+  margin: 6rem 4.5rem;
+}
+
+#games .game-card {
+  width: 40rem;
+  height: 30rem;
+  transform-style: preserve-3d;
+  transition: all .8s ease;
+  background-color: #c9d6df;
+  position: relative;
+  text-align: center;
+  margin: 4rem 3rem 7rem;
+}
+
+#games .game-card:hover {
+  transform: rotateY(180deg);
+}
+
+#games .game-card:hover.game-card--front {
+  transform: rotateY(-180deg);
+}
+
+#games .game-card:hover.game-card--back {
+  transform: rotateY(0);
+}
+
+#games .game-card .game-card--front,
+#games .game-card .game-card--back {
+  width: 40rem;
+  height: 30rem;
+  transition: all .8s ease;
+  position: absolute;
+  top: 0;
+  left: 0;
+  backface-visibility: hidden;
+  border-radius: 3px;
+  overflow: hidden;
+  box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.15);
+}
+
+#games .game-card .game-card--front img {
+  width: 40rem;
+  height: 30rem;
+}
+
+#games .game-card .game-card--back {
+  transform: rotateY(180deg);
+  background: linear-gradient(to right bottom, #c9d6df, rgba(82, 97, 107, 0.6));
+}
+
+#games .game-card .game-card--back .game-card--back__name {
+  margin: 6rem 0rem 4.5rem;
+  font-size: 3.2rem;
+  font-weight: 700;
+  color: #f0f5f9;
+}
+
+#games .game-card .game-card--back .game-card--back__detail {
+  font-size: 1.8rem;
+  margin-bottom: 3.8rem;
+  color: #f0f5f9;
+}
+
+#games .game-card .game-card--back .game-card--back__playBtn:link,
+#games .game-card .game-card--back .game-card--back__playBtn:visited {
+  text-decoration: none;
+  padding: 1.5rem 4rem;
+  display: inline-block;
+  border-radius: 10rem;
+  transition: all .2s;
+  position: relative;
+  font-size: 2.5rem;
+}
+
+#games .game-card .game-card--back .game-card--back__playBtn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
+}
+
+#games .game-card .game-card--back .game-card--back__playBtn:active {
+  transform: translateY(-1.5px);
+  box-shadow: 0 0.4rem 0.8rem rgba(0, 0, 0, 0.2);
+}
+
+#games .game-card .game-card--back .game-card--back__playBtn--white {
+  background-color: #f0f5f9;
+  color: rgba(82, 97, 107, 0.5);
+  font-weight: 700;
+}
+
+#games .game-card .game-card--back .game-card--back__playBtn::after {
+  content: "";
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+  border-radius: 10rem;
+  transition: all .4s;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+#games .game-card .game-card--back .game-card--back__playBtn--white::after {
+  background-color: #f0f5f9;
+}
+
+#games .game-card .game-card--back .game-card--back__playBtn:hover::after {
+  transform: scale(1.4, 1.6);
+  opacity: 0;
+}

@@ -1,0 +1,196 @@
+$color-light: #f0f5f9;
+$color-light-grey: #c9d6df;
+$color-medium-grey: #52616b80;
+$color-dark-grey: #52616b;
+$color-dark: #1e2022;
+
+@mixin size($w, $h) {
+  width: $w;
+  height: $h;
+}
+
+
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+  outline: none;
+  user-select: none;
+  font-family: 'Press Start 2P', cursive;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  padding: 3rem;
+  box-sizing: border-box;
+}
+
+#header {
+  position: relative;
+  background-image: linear-gradient(to right bottom,
+      rgba($color-light-grey, .6),
+      rgba($color-dark-grey, .9)),
+    url('https://wallpapercave.com/wp/PYgfKaE.jpg');
+  background-size: cover;
+  background-position: 50% 20%;
+  background-repeat: no-repeat;
+  height: 95vh;
+  clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+
+  .header__title {
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%);
+    font-size: 8rem;
+    color: $color-light;
+    text-shadow:
+      0 0 1rem $color-light-grey,
+      0 0 2rem $color-light-grey,
+      0 0 3rem $color-light-grey,
+      0 0 3.5rem $color-light-grey;
+
+    &:hover {
+      animation: Glow .7s ease infinite alternate;
+
+      @keyframes Glow {
+        to {
+          text-shadow:
+            0 0 1rem $color-light-grey,
+            0 0 2rem $color-light-grey,
+            0 0 3rem $color-light-grey,
+            0 0 4rem $color-light-grey,
+            0 0 5rem $color-light-grey,
+            0 0 6rem $color-light-grey,
+            0 0 7rem $color-light-grey,
+            0 0 8rem $color-light-grey,
+            0 0 10rem $color-light-grey,
+            0 0 12rem $color-light-grey,
+            0 0 15rem $color-light-grey;
+        }
+      }
+    }
+  }
+}
+
+#games {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  perspective: 150rem;
+  margin: 6rem 4.5rem;
+
+  .game-card {
+    @include size(40rem, 30rem);
+    transform-style: preserve-3d;
+    transition: all .8s ease;
+    background-color: $color-light-grey;
+    position: relative;
+    text-align: center;
+    margin: 4rem 3rem 7rem;
+
+    &:hover {
+      transform: rotateY(180deg);
+    }
+
+    &:hover.game-card--front {
+      transform: rotateY(-180deg);
+    }
+
+    &:hover.game-card--back {
+      transform: rotateY(0);
+    }
+
+    .game-card--front,
+    .game-card--back {
+      @include size(40rem, 30rem);
+      transition: all .8s ease;
+      position: absolute;
+      top: 0;
+      left: 0;
+      backface-visibility: hidden;
+      border-radius: 3px;
+      overflow: hidden;
+      box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.15);
+    }
+
+    .game-card--front {
+      img {
+        @include size(40rem, 30rem)
+      }
+    }
+
+    .game-card--back {
+      transform: rotateY(180deg);
+      background: linear-gradient(to right bottom,
+          $color-light-grey,
+          rgba($color-dark-grey, .6));
+
+      .game-card--back__name {
+        margin: 6rem 0rem 4.5rem;
+        font-size: 3.2rem;
+        font-weight: 700;
+        color: $color-light;
+      }
+
+      .game-card--back__detail {
+        font-size: 1.8rem;
+        margin-bottom: 3.8rem;
+        color: $color-light;
+      }
+
+      .game-card--back__playBtn:link,
+      .game-card--back__playBtn:visited {
+        text-decoration: none;
+        padding: 1.5rem 4rem;
+        display: inline-block;
+        border-radius: 10rem;
+        transition: all .2s;
+        position: relative;
+        font-size: 2.5rem;
+      }
+
+      .game-card--back__playBtn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
+      }
+
+      .game-card--back__playBtn:active {
+        transform: translateY(-1.5px);
+        box-shadow: 0 .4rem .8rem rgba(0, 0, 0, .2);
+      }
+
+      .game-card--back__playBtn--white {
+        background-color: $color-light;
+        color: rgba($color-dark-grey, .5);
+        font-weight: 700;
+      }
+
+      .game-card--back__playBtn::after {
+        content: "";
+        display: inline-block;
+        height: 100%;
+        width: 100%;
+        border-radius: 10rem;
+        transition: all .4s;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+      }
+
+      .game-card--back__playBtn--white::after {
+        background-color: $color-light;
+      }
+
+      .game-card--back__playBtn:hover::after {
+        transform: scale(1.4, 1.6);
+        opacity: 0;
+      }
+    }
+  }
+}
